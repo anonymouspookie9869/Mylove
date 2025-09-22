@@ -5,7 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: url('https://images.unsplash.com/photo-1532703108233-63d1ce468735?q=80&w=1000&auto=format&fit=crop') no-repeat center center/cover;
+    background: url('https://images.unsplash.com/photo-1532703108233-63d1ce468735?q=80&w=1000&auto-format&fit=crop') no-repeat center center/cover;
     font-family: 'Georgia', serif;
     color: #fff;
     text-align: center;
@@ -30,7 +30,6 @@ body {
     z-index: 1;
 }
 
-/* This rule is now specific and won't affect the love-letter page */
 .container h1 {
     font-size: 3.5em;
     margin-bottom: 20px;
@@ -170,7 +169,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     z-index: 1;
-    transition: transform 1s ease-in-out;
+    /* MODIFIED: Added 'height' to the transition for the smooth expansion */
+    transition: transform 1s ease-in-out, height 1s ease-in-out;
 }
 
 .letter-text {
@@ -188,7 +188,19 @@ body {
 .letter-text p { margin-bottom: 10px; }
 
 .envelope-wrapper.open .flap { transform: rotateX(180deg); }
-.envelope-wrapper.open .letter { transform: translateY(-150px); transition-delay: 0.5s; }
+
+/* MODIFIED: This whole rule is changed to fix the animation */
+.envelope-wrapper.open .letter {
+    transform: translateY(-150px);
+    height: 450px; /* Gives the letter enough height to show all the text */
+    transition-delay: 0.5s;
+}
+
+/* ADDED: This new rule removes the scrollbar when the letter is open */
+.envelope-wrapper.open .letter-text {
+    overflow-y: visible;
+}
+
 .envelope-wrapper.open .heart-seal { opacity: 0; transform: translate(-50%, -50px) rotate(45deg) scale(0); }
 .envelope-wrapper.open .envelope { transform: translateY(120px); }
 .envelope-wrapper.open { animation: none; }
