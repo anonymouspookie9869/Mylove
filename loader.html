@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise for You</title>
+    <link rel="stylesheet" href="loader.css">
+</head>
+<body>
+    <div class="container">
+        <div class="gift-box" id="giftBox">
+            <div class="lid"></div>
+            <div class="box"></div>
+            <div class="ribbon"></div>
+            <div class="hearts-container" id="heartsContainer"></div>
+        </div>
+        <p class="instruction">Tap the box for a surprise!</p>
+    </div>
+
+    <script>
+        const giftBox = document.getElementById('giftBox');
+        const heartsContainer = document.getElementById('heartsContainer');
+
+        giftBox.addEventListener('click', function() {
+            this.classList.add('open');
+            createHearts(15);
+            setTimeout(function() {
+                window.location.href = 'index.html';
+            }, 2000); // 2 seconds
+        });
+
+        function createHearts(count) {
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                const x = Math.random() * 200 - 100;
+                const y = Math.random() * 100 - 150;
+                const delay = Math.random() * 0.5;
+                heart.style.setProperty('--x', `${x}px`);
+                heart.style.setProperty('--y', `${y}px`);
+                heart.style.animationDelay = `${delay}s`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
