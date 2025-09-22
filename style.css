@@ -1,0 +1,231 @@
+/* === STYLES FOR PROPOSAL PAGE (proposal.html) === */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.jpg') no-repeat center center/cover;
+    font-family: 'Georgia', serif;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
+}
+
+.container h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.subtitle {
+    font-size: 1.3em;
+    font-style: italic;
+    margin-bottom: 40px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-yes { background-color: #ff477e; }
+.btn-yes:hover { background-color: #ff1a62; transform: scale(1.05); }
+.btn-no { background-color: #6c757d; position: absolute; }
+.btn-no:hover { background-color: #5a6268; }
+
+
+/* === STYLES FOR LOVE LETTER PAGE (love-letter.html) === */
+
+/* FIXED: Added your custom image background with a pinkish overlay for readability */
+.love-letter-page-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(rgba(253, 231, 240, 0.7), rgba(253, 231, 240, 0.7)), url('background.jpg') no-repeat center center/cover;
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+}
+
+.envelope-wrapper {
+    cursor: pointer;
+    position: relative;
+    animation: gentle-pulse 2.5s infinite;
+}
+
+.envelope-wrapper .instruction-text {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+    color: #444; /* Darker text for better visibility on image */
+    font-style: italic;
+    transition: opacity 0.5s;
+}
+
+.envelope-wrapper.open .instruction-text { opacity: 0; }
+
+.envelope {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    background-color: #f7d9e5;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* FIXED: Added transitions for background and shadow to allow fading */
+    transition: background-color 0.5s 0.75s, box-shadow 0.5s 0.75s;
+}
+
+/* FIXED: Added a pseudo-element to act as the front of the envelope, hiding the letter */
+.envelope::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f7d9e5;
+    border-radius: 10px;
+    z-index: 2; /* Position it above the letter (1) but below the flap (3) */
+    transition: opacity 0.5s 0.25s;
+}
+
+.envelope .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: top;
+    transition: transform 1s ease-in-out;
+    z-index: 3;
+}
+
+.envelope .flap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 110px solid #ffb3c6;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+}
+
+.envelope .heart-seal {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(45deg);
+    width: 40px;
+    height: 40px;
+    background: #ff477e;
+    z-index: 4;
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.envelope .heart-seal::before, .envelope .heart-seal::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #ff477e;
+    border-radius: 50%;
+}
+
+.envelope .heart-seal::before { top: -20px; left: 0; }
+.envelope .heart-seal::after { top: 0; left: -20px; }
+
+.letter {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 300px;
+    height: 200px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 1s 0.5s ease-in-out, height 1s 0.5s ease-in-out;
+}
+
+.letter-text {
+    padding: 20px;
+    color: #333;
+    font-size: 0.95em;
+    line-height: 1.6;
+    height: 100%;
+    box-sizing: border-box;
+    /* FIXED: Hide the scrollbar by default */
+    overflow-y: hidden;
+}
+
+.letter-text h1 { color: #d9534f; font-size: 1.5em; margin: 0 0 10px; }
+.letter-text h2 { margin: 10px 0 5px; font-size: 1.2em; }
+.letter-text p { margin-bottom: 10px; }
+
+
+/* === ANIMATION WHEN 'open' CLASS IS ADDED === */
+
+.envelope-wrapper.open .flap { transform: rotateX(180deg); }
+.envelope-wrapper.open .heart-seal { opacity: 0; transform: translate(-50%, -50px) rotate(45deg) scale(0); }
+
+/* FIXED: Fade out the envelope front */
+.envelope-wrapper.open .envelope::after {
+    opacity: 0;
+}
+
+/* FIXED: Fade the envelope background and shadow to transparent */
+.envelope-wrapper.open .envelope {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* FIXED: Animate the letter to rise up and expand */
+.envelope-wrapper.open .letter {
+    transform: translateY(-110px);
+    height: 450px;
+}
+
+.envelope-wrapper.open { animation: none; }
+
+@keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
